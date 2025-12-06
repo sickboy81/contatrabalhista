@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://portaldobolso.com.br/sitemap.xml
+
+# Block AI bots that don't drive traffic (optional but recommended to save bandwidth)
+User-agent: GPTBot
+Disallow: /
