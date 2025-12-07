@@ -155,11 +155,13 @@ const LegalAssistant: React.FC = () => {
   }, [messages, isTyping]);
 
   const findBestMatch = (text: string): string => {
-    const cleanText = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // Remove accents
+    const normalize = (str: string) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    const cleanText = normalize(text);
 
     // 1. Direct Match
     const match = KNOWLEDGE_BASE.find(item =>
-      item.keywords.some(keyword => cleanText.includes(keyword))
+      item.keywords.some(keyword => cleanText.includes(normalize(keyword)))
     );
 
     if (match) return match.answer;
