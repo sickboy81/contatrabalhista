@@ -25,12 +25,12 @@ const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
   },
   {
     title: "Direitos no Pedido de Demissão",
-    keywords: ['pedido de demissao', 'pedir demissao', 'pedir as contas', 'quero sair', 'me demitir', 'pedindo as contas'],
+    keywords: ['pedido de demissao', 'pedir demissao', 'pedir as contas', 'quero sair', 'me demitir', 'pedindo as contas', 'quais os meus direitos se eu pedir demissao'],
     answer: "Ao **pedir demissão**, seus direitos são:\n\n1. **Saldo de Salário**\n2. **13º Salário Proporcional**\n3. **Férias Vencidas + 1/3**\n4. **Férias Proporcionais + 1/3**\n\n⚠️ **O que você PERDE:**\n❌ Não saca o FGTS.\n❌ Não recebe multa de 40%.\n❌ Não tem direito ao Seguro Desemprego.\n❌ Se não cumprir o aviso prévio, a empresa pode descontar o valor."
   },
   {
     title: "Demissão por Justa Causa",
-    keywords: ['justa causa', 'falta grave', 'motivo grave', 'roubo', 'agressao', 'abandono de emprego', 'desidia'],
+    keywords: ['justa causa', 'falta grave', 'motivo grave', 'roubo', 'agressao', 'abandono de emprego', 'desidia', 'como funciona a justa causa'],
     answer: "A demissão por **Justa Causa** (Art. 482 da CLT) elimina a maioria dos direitos.\n\n✅ **Você recebe apenas:**\n• Saldo de Salário\n• Férias Vencidas + 1/3 (se tiver mais de um ano)\n\n🚫 **Você perde:** Aviso Prévio, 13º, Férias Proporcionais, Saque FGTS, Multa 40% e Seguro Desemprego."
   },
   {
@@ -40,7 +40,7 @@ const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
   },
   {
     title: "Prazo para Pagamento da Rescisão",
-    keywords: ['prazo pagamento', 'quando recebo', 'dias para pagar', 'prazo rescisao', 'multa atraso', 'quanto tempo pra pagar'],
+    keywords: ['prazo pagamento', 'quando recebo', 'dias para pagar', 'prazo rescisao', 'multa atraso', 'quanto tempo pra pagar', 'quanto tempo para pagar a rescisao'],
     answer: "A empresa tem **10 dias corridos** após o último dia de contrato para pagar as verbas rescisórias.\n\nIsso vale para aviso trabalhado ou indenizado. Se o pagamento atrasar, a empresa deve pagar uma multa no valor de **um salário seu** (Art. 477 da CLT)."
   },
 
@@ -81,7 +81,7 @@ const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
   // --- SEGURO DESEMPREGO ---
   {
     title: "Quem tem direito ao Seguro Desemprego?",
-    keywords: ['direito seguro desemprego', 'quem recebe seguro', 'regras seguro', 'pegar seguro'],
+    keywords: ['direito seguro desemprego', 'quem recebe seguro', 'regras seguro', 'pegar seguro', 'quem tem direito ao seguro desemprego'],
     answer: "Tem direito quem foi demitido **sem justa causa** e não possui outra fonte de renda.\n\n📅 **Tempo de trabalho necessário:**\n• 1ª Solicitação: Pelo menos 12 meses trabalhados.\n• 2ª Solicitação: Pelo menos 9 meses.\n• 3ª em diante: Pelo menos 6 meses.\n\nO valor depende da média dos últimos 3 salários (teto R$ 2.313,78 em 2024)."
   },
   {
@@ -181,13 +181,14 @@ const LegalAssistant: React.FC = () => {
 
   // Auto-scroll logic
   useEffect(() => {
-    // Only scroll to bottom for user messages or typing indicator
-    // This prevents long AI responses from scrolling to the footer, hiding the start of the text
+    // Scroll strictly only when a new message is added
+    // and ONLY if it's from the user.
+    // We intentionally ignore 'isTyping' changes to avoid scrolling when the AI starts/stops thinking.
     const lastMessage = messages[messages.length - 1];
-    if (isTyping || lastMessage?.role === 'user') {
+    if (lastMessage?.role === 'user') {
       chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages, isTyping]);
+  }, [messages]);
 
   const findBestMatch = (text: string): string => {
     const normalize = (str: string) => str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
