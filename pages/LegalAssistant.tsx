@@ -17,118 +17,148 @@ interface KnowledgeBaseItem {
 
 // --- BANCO DE DADOS LOCAL (CÉREBRO DO ROBÔ) ---
 const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
-  // --- RESCISÃO E DEMISSÃO ---
+  // --- DEMISSÃO E RESCISÃO ---
   {
-    title: "Demissão sem Justa Causa",
-    keywords: ['sem justa causa', 'fui demitido', 'demissao sem justa', 'direitos demissao'],
-    answer: "Na demissão **sem justa causa**, você tem direito a receber: Saldo de Salário, Aviso Prévio (trabalhado ou indenizado), 13º Salário Proporcional, Férias Vencidas + 1/3, Férias Proporcionais + 1/3, Saque do FGTS e Multa de 40% sobre o FGTS. Você também recebe as guias para o Seguro Desemprego."
+    title: "Direitos na Demissão sem Justa Causa",
+    keywords: ['sem justa causa', 'fui demitido', 'demissao sem justa', 'direitos demissao', 'me mandaram embora', 'direitos ao ser despedido'],
+    answer: "Na demissão **sem justa causa**, você tem direito a:\n\n1. **Saldo de Salário:** Dias trabalhados no mês.\n2. **Aviso Prévio:** Trabalhado ou indenizado (+3 dias por ano de casa).\n3. **13º Proporcional:** Meses trabalhados no ano.\n4. **Férias Vencidas + 1/3:** Se houver.\n5. **Férias Proporcionais + 1/3:** Meses trabalhados no período aquisitivo atual.\n6. **Saque do FGTS:** Valor total depositado.\n7. **Multa de 40%:** Sobre o saldo do FGTS.\n8. **Seguro Desemprego:** Se cumprir os requisitos de tempo."
   },
   {
-    title: "Pedido de Demissão",
-    keywords: ['pedido de demissão', 'pedir demissão', 'pedir as contas', 'quero sair', 'me demitir'],
-    answer: "Ao **pedir demissão**, você tem direito a: Saldo de Salário, 13º Salário Proporcional e Férias (vencidas e proporcionais + 1/3). \n\n⚠️ **O que você perde:** Você NÃO saca o FGTS, NÃO recebe a multa de 40% e NÃO tem direito ao Seguro Desemprego. Lembre-se que se não cumprir o aviso prévio, a empresa pode descontar o valor dele."
+    title: "Direitos no Pedido de Demissão",
+    keywords: ['pedido de demissao', 'pedir demissao', 'pedir as contas', 'quero sair', 'me demitir', 'pedindo as contas'],
+    answer: "Ao **pedir demissão**, seus direitos são:\n\n1. **Saldo de Salário**\n2. **13º Salário Proporcional**\n3. **Férias Vencidas + 1/3**\n4. **Férias Proporcionais + 1/3**\n\n⚠️ **O que você PERDE:**\n❌ Não saca o FGTS.\n❌ Não recebe multa de 40%.\n❌ Não tem direito ao Seguro Desemprego.\n❌ Se não cumprir o aviso prévio, a empresa pode descontar o valor."
   },
   {
     title: "Demissão por Justa Causa",
-    keywords: ['justa causa', 'motivo grave', 'roubo', 'agressão', 'abandono de emprego'],
-    answer: "A demissão por **Justa Causa** (Art. 482 da CLT) retira a maioria dos direitos. Você recebe apenas: Saldo de Salário e Férias Vencidas + 1/3 (se houver mais de um ano de casa). \n\n🚫 Você perde: Aviso Prévio, 13º, Férias Proporcionais, Saque FGTS, Multa 40% e Seguro Desemprego."
+    keywords: ['justa causa', 'falta grave', 'motivo grave', 'roubo', 'agressao', 'abandono de emprego', 'desidia'],
+    answer: "A demissão por **Justa Causa** (Art. 482 da CLT) elimina a maioria dos direitos.\n\n✅ **Você recebe apenas:**\n• Saldo de Salário\n• Férias Vencidas + 1/3 (se tiver mais de um ano)\n\n🚫 **Você perde:** Aviso Prévio, 13º, Férias Proporcionais, Saque FGTS, Multa 40% e Seguro Desemprego."
   },
   {
-    title: "Demissão por Comum Acordo",
-    keywords: ['acordo', 'comum acordo', 'distrato', 'acordo trabalhista'],
-    answer: "O **Acordo Trabalhista** (Art. 484-A da CLT) oferece um meio termo: \n\n1. O Aviso Prévio indenizado é pago pela metade (50%). \n2. A Multa do FGTS é de 20% (metade). \n3. Você pode sacar até 80% do saldo do FGTS. \n\n🚫 **Atenção:** Quem faz acordo NÃO tem direito ao Seguro Desemprego."
+    title: "Demissão por Acordo (Distrato)",
+    keywords: ['acordo', 'comum acordo', 'distrato', 'acordo trabalhista', 'sair por acordo'],
+    answer: "O **Acordo Trabalhista** (Art. 484-A da CLT) é um meio termo legal:\n\n• **Aviso Prévio:** Indenizado pago pela metade (50%).\n• **Multa FGTS:** 20% (metade).\n• **Saque FGTS:** Você pode sacar até 80% do saldo.\n• **Demais verbas:** Pagas integralmente (13º, Férias, Saldo).\n\n🚫 **Atenção:** Quem faz acordo NÃO recebe Seguro Desemprego."
   },
   {
-    title: "Prazo de Pagamento da Rescisão",
-    keywords: ['prazo pagamento', 'quando recebo', 'dias para pagar', 'prazo rescisao'],
-    answer: "A empresa tem **10 dias corridos** após o término do contrato para pagar as verbas rescisórias, independente se o aviso foi trabalhado ou indenizado. Se o pagamento atrasar, a empresa deve pagar uma multa no valor de um salário seu (Art. 477 da CLT)."
+    title: "Prazo para Pagamento da Rescisão",
+    keywords: ['prazo pagamento', 'quando recebo', 'dias para pagar', 'prazo rescisao', 'multa atraso', 'quanto tempo pra pagar'],
+    answer: "A empresa tem **10 dias corridos** após o último dia de contrato para pagar as verbas rescisórias.\n\nIsso vale para aviso trabalhado ou indenizado. Se o pagamento atrasar, a empresa deve pagar uma multa no valor de **um salário seu** (Art. 477 da CLT)."
   },
 
   // --- AVISO PRÉVIO ---
   {
-    title: "Tipos de Aviso Prévio",
-    keywords: ['aviso prévio', 'aviso previo', 'tipos de aviso'],
-    answer: "🔹 **Trabalhado:** Você trabalha mais 30 dias. Pode escolher sair 2h mais cedo todo dia ou folgar 7 dias corridos no final. \n🔹 **Indenizado:** A empresa paga o mês sem você precisar trabalhar (o contrato encerra na hora). \n🔹 **Proporcional:** A lei garante 3 dias extras de aviso para cada ano completo de empresa, até o limite total de 90 dias."
+    title: "Regras do Aviso Prévio",
+    keywords: ['aviso previo', 'aviso prévio', 'tipos de aviso', 'aviso trabalhado', 'aviso indenizado'],
+    answer: "🔹 **Trabalhado:** Você trabalha mais 30 dias após a demissão.\n🔹 **Indenizado:** A empresa paga o mês e te libera na hora.\n🔹 **Proporcional:** Para cada ano completo de empresa, você ganha 3 dias a mais de aviso indenizado (Lei 12.506), limitado a 90 dias totais."
   },
   {
     title: "Redução de Jornada no Aviso",
-    keywords: ['redução de jornada', 'sair mais cedo', '7 dias corridos', 'duas horas a menos'],
-    answer: "No aviso prévio **trabalhado** (quando a empresa te demite), você tem direito a escolher: \n\n1. Reduzir 2 horas da jornada diária (sem desconto no salário). \n2. OU Folgar os últimos 7 dias corridos do aviso. \n\nSe você pediu demissão, não tem direito a essa redução (trabalha normal até o fim)."
+    keywords: ['reducao de jornada', 'sair mais cedo', '7 dias corridos', 'duas horas a menos', 'folgar aviso'],
+    answer: "Se você foi demitido (sem justa causa) e vai cumprir aviso trabalhado, pode escolher:\n\n1. **Sair 2 horas mais cedo** todo dia (sem desconto).\n2. **Folgar os últimos 7 dias** corridos (recebe o mês cheio).\n\n⚠️ Se VOCÊ pediu demissão, não tem direito a essa redução; cumpre o horário normal."
+  },
+  {
+    title: "Desconto de Aviso Prévio",
+    keywords: ['desconto aviso', 'nao cumprir aviso', 'nao quero cumprir aviso', 'empresa pode descontar'],
+    answer: "Se você **pediu demissão** e não quer cumprir os 30 dias, a empresa pode descontar esse valor da sua rescisão (o equivalente a um salário mensal). Se a empresa te demitiu e te dispensou do cumprimento, ela deve pagar esse mês como indenizado."
   },
 
   // --- FÉRIAS ---
   {
     title: "Direito a Férias",
-    keywords: ['férias', 'ferias', 'descanso', 'quando posso tirar ferias'],
-    answer: "Todo funcionário tem direito a 30 dias de férias a cada 12 meses de trabalho (período aquisitivo). A empresa tem os 12 meses seguintes (período concessivo) para conceder o descanso. Passando desse prazo, ela deve pagar em dobro."
+    keywords: ['direito a ferias', 'quando tiro ferias', 'ferias vencidas', 'periodo aquisitivo'],
+    answer: "A cada 12 meses trabalhados (período aquisitivo), você ganha o direito a 30 dias de férias. A empresa tem os 12 meses seguintes (período concessivo) para te dar esse descanso. Se passar desse prazo, ela deve pagar o valor em **dobro**."
   },
   {
-    title: "Venda de Férias (Abono)",
-    keywords: ['vender férias', 'vender ferias', 'abono pecuniário', 'vender 10 dias'],
-    answer: "É seu direito vender 1/3 das férias (10 dias) em troca de dinheiro. Isso é o **Abono Pecuniário**. A empresa não pode recusar se você pedir até 15 dias antes de completar o período aquisitivo. Sobre esse valor não incide imposto."
+    title: "Venda de Férias (Abono Pecuniário)",
+    keywords: ['vender ferias', 'vender férias', 'abono pecuniario', 'vender 10 dias', 'posso vender minhas ferias'],
+    answer: "Sim, é seu direito vender 1/3 das férias (10 dias) em troca de dinheiro. Isso se chama **Abono Pecuniário**.\n\n✅ A empresa **não pode recusar** se você pedir por escrito até 15 dias antes de completar o período aquisitivo.\n✅ Sobre esse valor não incide imposto de renda nem INSS (dinheiro limpo)."
   },
   {
-    title: "Faltas impactam nas Férias?",
-    keywords: ['faltas', 'desconto ferias', 'faltei muito'],
-    answer: "Sim. Se você tiver mais de 5 faltas injustificadas no ano, seus dias de férias diminuem. \n\n• 6 a 14 faltas: 24 dias de férias \n• 15 a 23 faltas: 18 dias \n• 24 a 32 faltas: 12 dias \n• Acima de 32 faltas: Perde o direito às férias."
+    title: "Faltas e Férias",
+    keywords: ['faltas ferias', 'desconto ferias', 'faltei muito', 'faltas injustificadas'],
+    answer: "Faltas injustificadas no ano reduzem seus dias de férias:\n\n• Até 5 faltas: 30 dias (normal)\n• 6 a 14 faltas: 24 dias\n• 15 a 23 faltas: 18 dias\n• 24 a 32 faltas: 12 dias\n• Mais de 32 faltas: Perde as férias."
   },
 
-  // --- 13º SALÁRIO ---
+  // --- SEGURO DESEMPREGO ---
   {
-    title: "13º Salário",
-    keywords: ['decimo terceiro', '13 salario', '13o', 'gratificacao natalina'],
-    answer: "O 13º salário é pago em duas parcelas: \n\n1ª Parcela: Entre 1º de fevereiro e 30 de novembro (sem descontos). \n2ª Parcela: Até 20 de dezembro (com descontos de INSS e IRRF). \n\nQuem trabalhou menos de um ano recebe proporcional (1/12 avos para cada mês com mais de 14 dias trabalhados)."
+    title: "Quem tem direito ao Seguro Desemprego?",
+    keywords: ['direito seguro desemprego', 'quem recebe seguro', 'regras seguro', 'pegar seguro'],
+    answer: "Tem direito quem foi demitido **sem justa causa** e não possui outra fonte de renda.\n\n📅 **Tempo de trabalho necessário:**\n• 1ª Solicitação: Pelo menos 12 meses trabalhados.\n• 2ª Solicitação: Pelo menos 9 meses.\n• 3ª em diante: Pelo menos 6 meses.\n\nO valor depende da média dos últimos 3 salários (teto R$ 2.313,78 em 2024)."
+  },
+  {
+    title: "Valor e Parcelas do Seguro",
+    keywords: ['valor seguro', 'quantas parcelas', 'calculo seguro', 'teto seguro'],
+    answer: "O valor é a média dos últimos 3 salários multiplicada por 0.8 (ou regra da faixa). O teto Maximo é R$ 2.313,78.\n\n📦 **Parcelas:**\n• De 3 a 5 parcelas, dependendo do tempo de serviço nos últimos 36 meses."
   },
 
-  // --- FGTS E SEGURO DESEMPREGO ---
+  // --- FGTS ---
   {
-    title: "Regras do Seguro Desemprego",
-    keywords: ['seguro desemprego', 'quem tem direito ao seguro', 'parcelas seguro'],
-    answer: "Tem direito quem foi demitido sem justa causa. \n\n📅 **Prazos:** \n1ª solicitação: Ter trabalhado pelo menos 12 meses nos últimos 18. \n2ª solicitação: 9 meses nos últimos 12. \n3ª em diante: 6 meses anteriores à demissão. \n\nO valor varia conforme a média salarial e tem um teto."
+    title: "O que é FGTS?",
+    keywords: ['o que e fgts', 'fundo de garantia', 'deposito fgts', '8 por cento'],
+    answer: "O FGTS (Fundo de Garantia) é uma poupança forçada. A empresa deve depositar **8% do seu salário bruto** todo mês em uma conta na Caixa. Esse valor NÃO é descontado de você; é um custo extra do patrão."
   },
   {
-    title: "Saque-Aniversário FGTS",
-    keywords: ['saque aniversário', 'saque aniversario', 'bloqueio fgts'],
-    answer: "Ao optar pelo **Saque-Aniversário**, você saca uma parte do FGTS todo ano no mês do seu aniversário. \n\n⚠️ **O Risco:** Se for demitido, você **NÃO saca o saldo total** da conta, apenas a multa de 40%. Para voltar ao saque-rescisão (regra antiga), há uma carência de 25 meses."
+    title: "Saque-Aniversário vs Saque-Rescisão",
+    keywords: ['saque aniversario', 'saque rescisao', 'modalidade fgts', 'bloqueio fgts'],
+    answer: "• **Saque-Rescisão (Padrão):** Se demitido, saca tudo + multa de 40%.\n• **Saque-Aniversário:** Saca uma parte todo ano no mês do aniversário.\n\n⚠️ **Cuidado:** No Saque-Aniversário, se você for demitido, **só recebe a multa de 40%**. O saldo fica retido. Para voltar ao padrão, demora 25 meses (2 anos e 1 mês)."
+  },
+  {
+    title: "Multa de 40%",
+    keywords: ['multa 40', 'multa fgts', 'quarenta por cento', 'multa rescisoria'],
+    answer: "Na demissão sem justa causa, a empresa paga uma multa de **40% sobre todo o valor que ela já depositou** no seu FGTS durante o contrato. Esse dinheiro é seu."
   },
 
-  // --- JORNADA E HORAS EXTRAS ---
+  // --- JORNADA, HORAS EXTRAS E ADICIONAIS ---
   {
     title: "Horas Extras",
-    keywords: ['hora extra', 'valor hora extra', 'banco de horas'],
-    answer: "A hora extra vale no mínimo 50% a mais que a hora normal (dias úteis). Aos domingos e feriados, o adicional é de 100%. \n\nAs horas extras habituais integram o cálculo de férias, 13º, aviso prévio e FGTS. A empresa pode usar Banco de Horas se previsto em convenção coletiva."
+    keywords: ['hora extra', 'valor hora extra', 'banco de horas', '50%', '100%'],
+    answer: "A hora extra deve ser paga com adicional de:\n• **50%** (mínimo) em dias úteis.\n• **100%** (dobro) em domingos e feriados.\n\nAs horas extras habituais entram na média para pagar Férias, 13º, FGTS e Aviso Prévio. O banco de horas é permitido se houver acordo escrito."
   },
   {
     title: "Adicional Noturno",
-    keywords: ['adicional noturno', 'trabalho a noite', 'hora noturna'],
-    answer: "O trabalho entre **22h e 05h** (urbano) tem acréscimo de 20% no valor da hora. Além disso, a hora noturna é menor: 52 minutos e 30 segundos contam como se fosse 1 hora cheia de trabalho."
+    keywords: ['adicional noturno', 'trabalho a noite', 'hora noturna', '22h as 5h'],
+    answer: "Trabalho urbano entre **22h e 05h** tem adicional de **20%** sobre a hora normal. Além disso, a 'hora noturna' é mais curta: 52 minutos e 30 segundos contam como 1 hora de trabalho."
   },
   {
-    title: "Intervalo de Almoço",
-    keywords: ['almoço', 'intervalo', 'hora de almoço', 'descanso'],
-    answer: "Quem trabalha mais de 6 horas por dia tem direito a no mínimo **1 hora** e no máximo 2 horas de intervalo. \nQuem trabalha entre 4 e 6 horas tem direito a 15 minutos. \nSe a empresa não conceder, deve pagar o tempo suprimido como hora extra indenizatória."
+    title: "Adicional de Insalubridade e Periculosidade",
+    keywords: ['insalubridade', 'periculosidade', 'adicional risco', 'trabalho perigoso'],
+    answer: "☢️ **Periculosidade:** 30% sobre o salário base (risco de vida, eletricidade, explosivos, moto).\n🤢 **Insalubridade:** 10%, 20% ou 40% sobre o salário MÍNIMO (agentes nocivos à saúde, ruído, calor, químicos).\n\nNão se acumulam (você recebe o mais vantajoso)."
+  },
+  {
+    title: "Intervalo de Almoço (Intrajornada)",
+    keywords: ['almoco', 'intervalo', 'hora de almoco', 'descanso', 'pausa'],
+    answer: "Regras de intervalo:\n• Acima de 6h trabalho: Mínimo **1 hora** de almoço.\n• De 4h a 6h: 15 minutos.\n• Até 4h: Sem intervalo obrigatório.\n\nSe a empresa não der o intervalo, deve pagar o tempo suprimido como hora extra indenizatória."
   },
 
-  // --- DIREITOS ESPECÍFICOS ---
+  // --- BENEFÍCIOS E OUTROS ---
+  {
+    title: "Vale Transporte",
+    keywords: ['vale transporte', 'desconto vt', 'vt em dinheiro', 'transporte'],
+    answer: "A empresa é obrigada a fornecer VT se você precisar. Pode descontar até **6% do seu salário básico** (ou o custo real do transporte, o que for menor). O pagamento em dinheiro é permitido apenas em casos excepcionais ou acordo coletivo, mas tem natureza salarial (incide imposto)."
+  },
   {
     title: "Estabilidade Gestante",
-    keywords: ['gestante', 'gravida', 'estabilidade gravidez'],
-    answer: "A empregada gestante tem estabilidade no emprego desde a confirmação da gravidez até **5 meses após o parto**. Ela não pode ser demitida sem justa causa nesse período, mesmo se estiver no período de experiência ou aviso prévio."
+    keywords: ['gestante', 'gravida', 'estabilidade gravidez', 'demissao gravida'],
+    answer: "A gestante tem estabilidade provisória desde a **confirmação da gravidez** (mesmo que a empresa não saiba) até **5 meses após o parto**. Não pode ser demitida sem justa causa, nem mesmo no período de experiência."
   },
   {
     title: "Licença Paternidade",
-    keywords: ['paternidade', 'licença pai', 'dias paternidade'],
-    answer: "A licença-paternidade padrão é de **5 dias corridos**. Empresas do programa Empresa Cidadã podem estender esse prazo para 20 dias."
-  },
-  {
-    title: "Vale Transporte",
-    keywords: ['vale transporte', 'desconto vt', 'vt em dinheiro'],
-    answer: "O Vale Transporte é obrigatório para o deslocamento casa-trabalho. A empresa pode descontar até **6% do salário base** do funcionário (se o custo do VT for menor que 6%, desconta-se apenas o custo real)."
+    keywords: ['paternidade', 'licenca pai', 'quantos dias pai'],
+    answer: "O pai tem direito a **5 dias corridos** de licença remunerada logo após o nascimento. Empresas do programa Empresa Cidadã podem estender para 20 dias."
   },
   {
     title: "Atestado Médico",
-    keywords: ['atestado', 'falta justificada', 'descontar atestado'],
-    answer: "A empresa é obrigada a aceitar atestados médicos válidos e abonar as faltas. Não pode haver desconto de salário. Atestados de acompanhamento de filhos (até 6 anos) também são garantidos por lei (1 dia por ano), mas convenções coletivas costumam ampliar esse direito."
+    keywords: ['atestado', 'falta justificada', 'descontar atestado', 'atestado filho'],
+    answer: "Atestado médico válido abona a falta (não desconta salário). Você também tem direito a acompanhar filho de até 6 anos ao médico (1 dia por ano pela CLT, mas convenções costumam dar mais)."
+  },
+  {
+    title: "Salário Família",
+    keywords: ['salario familia', 'abono filho', 'quem recebe salario familia'],
+    answer: "É um valor pago pelo INSS (via empresa) para trabalhadores de baixa renda com filhos até 14 anos ou inválidos. O valor em 2024 é de R$ 62,04 por filho para quem ganha até R$ 1.819,26."
+  },
+  {
+    title: "Contribuição Sindical",
+    keywords: ['imposto sindical', 'contribuicao sindical', 'desconto sindicato'],
+    answer: "A Contribuição Sindical (um dia de trabalho) **NÃO é mais obrigatória** desde 2017. Ela só pode ser descontada se você autorizar prévia e expressamente por escrito."
   }
 ];
 
@@ -149,9 +179,14 @@ const LegalAssistant: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const currentMonthName = new Date().toLocaleDateString('pt-BR', { month: 'long' });
 
-  // Auto-scroll
+  // Auto-scroll logic
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Only scroll to bottom for user messages or typing indicator
+    // This prevents long AI responses from scrolling to the footer, hiding the start of the text
+    const lastMessage = messages[messages.length - 1];
+    if (isTyping || lastMessage?.role === 'user') {
+      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages, isTyping]);
 
   const findBestMatch = (text: string): string => {
