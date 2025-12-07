@@ -7,8 +7,8 @@ const Terms: React.FC = () => {
 
   return (
     <div className="max-w-3xl mx-auto pb-12">
-      <SEO 
-        title="Termos de Uso - Portal do Bolso"
+      <SEO
+        title="Termos de Uso - Conta Trabalhista"
         description="Termos e condições de uso das calculadoras trabalhistas."
       />
 
@@ -17,7 +17,7 @@ const Terms: React.FC = () => {
         <p className="text-sm text-slate-500 mb-8 capitalize">Última atualização: {currentMonth} de {currentYear}</p>
 
         <h3 className="text-xl font-bold text-slate-800 mt-6 mb-3">1. Natureza Informativa</h3>
-        <p>O <strong>Portal do Bolso do Trabalhador</strong> é uma ferramenta educativa e informativa. As calculadoras fornecem <strong>simulações</strong> baseadas nas leis trabalhistas vigentes (CLT) e tabelas oficiais (INSS, IRRF).</p>
+        <p>O <strong>Conta Trabalhista</strong> é uma ferramenta educativa e informativa. As calculadoras fornecem <strong>simulações</strong> baseadas nas leis trabalhistas vigentes (CLT) e tabelas oficiais (INSS, IRRF).</p>
         <p>Embora nos esforcemos para garantir a precisão, os resultados <strong>não substituem</strong> o cálculo oficial feito pelo departamento pessoal da sua empresa, pelo sindicato ou por um contador, e não têm valor legal como prova em juízo.</p>
 
         <h3 className="text-xl font-bold text-slate-800 mt-6 mb-3">2. Isenção de Responsabilidade</h3>

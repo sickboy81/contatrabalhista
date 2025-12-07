@@ -54,9 +54,9 @@ const Sitemap: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <SEO 
+      <SEO
         title="Mapa do Site - Todas as Ferramentas"
-        description="Índice completo de todas as calculadoras e ferramentas trabalhistas disponíveis no Portal do Bolso."
+        description="Índice completo de todas as calculadoras e ferramentas trabalhistas disponíveis no Conta Trabalhista."
         keywords="mapa do site, lista calculadoras, ferramentas clt"
       />
 
@@ -74,8 +74,8 @@ const Sitemap: React.FC = () => {
             <ul className="space-y-3">
               {section.links.map((link, lIdx) => (
                 <li key={lIdx}>
-                  <Link 
-                    to={link.to} 
+                  <Link
+                    to={link.to}
                     className="flex items-center text-gray-700 hover:text-brand-600 transition-colors group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-brand-500 mr-2 transition-colors"></span>
