@@ -8,138 +8,138 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/seguro-desemprego</loc>
+    <loc>https://www.contatrabalhista.com.br/seguro-desemprego</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/ferias</loc>
+    <loc>https://www.contatrabalhista.com.br/ferias</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/salario-liquido</loc>
+    <loc>https://www.contatrabalhista.com.br/salario-liquido</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/hora-extra</loc>
+    <loc>https://www.contatrabalhista.com.br/hora-extra</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/adicional-noturno</loc>
+    <loc>https://www.contatrabalhista.com.br/adicional-noturno</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/fgts</loc>
+    <loc>https://www.contatrabalhista.com.br/fgts</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/domestico</loc>
+    <loc>https://www.contatrabalhista.com.br/domestico</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Reference & Planning -->
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/tabelas</loc>
+    <loc>https://www.contatrabalhista.com.br/tabelas</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/clt-pj</loc>
+    <loc>https://www.contatrabalhista.com.br/clt-pj</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/melhor-data</loc>
+    <loc>https://www.contatrabalhista.com.br/melhor-data</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/sobrevivencia</loc>
+    <loc>https://www.contatrabalhista.com.br/sobrevivencia</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/investimentos</loc>
+    <loc>https://www.contatrabalhista.com.br/investimentos</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/quiz-direitos</loc>
+    <loc>https://www.contatrabalhista.com.br/quiz-direitos</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/mei-monitor</loc>
+    <loc>https://www.contatrabalhista.com.br/mei-monitor</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Generators -->
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/curriculo</loc>
+    <loc>https://www.contatrabalhista.com.br/curriculo</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/carta-demissao</loc>
+    <loc>https://www.contatrabalhista.com.br/carta-demissao</loc>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/gerador-recibo</loc>
+    <loc>https://www.contatrabalhista.com.br/gerador-recibo</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/comprovante-renda</loc>
+    <loc>https://www.contatrabalhista.com.br/comprovante-renda</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/linkedin</loc>
+    <loc>https://www.contatrabalhista.com.br/linkedin</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Utilities -->
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/ponto</loc>
+    <loc>https://www.contatrabalhista.com.br/ponto</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/checklist-homologacao</loc>
+    <loc>https://www.contatrabalhista.com.br/checklist-homologacao</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/assistente</loc>
+    <loc>https://www.contatrabalhista.com.br/assistente</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/glossario</loc>
+    <loc>https://www.contatrabalhista.com.br/glossario</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/sobre</loc>
+    <loc>https://www.contatrabalhista.com.br/sobre</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/privacidade</loc>
+    <loc>https://www.contatrabalhista.com.br/privacidade</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.contatrabalhista.com.br/#/termos</loc>
+    <loc>https://www.contatrabalhista.com.br/termos</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

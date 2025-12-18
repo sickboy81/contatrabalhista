@@ -36,7 +36,7 @@ const Breadcrumbs: React.FC = () => {
   if (location.pathname === '/') return null;
 
   // Schema.org BreadcrumbList
-  // Important: With HashRouter, the URLs in schema must include /#/ to be valid crawl targets
+  const baseUrl = 'https://contatrabalhista.com.br';
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -45,14 +45,17 @@ const Breadcrumbs: React.FC = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Início",
-        "item": "https://portaldobolso.com.br/"
+        "item": `${baseUrl}/`
       },
-      ...pathnames.map((name, index) => ({
-        "@type": "ListItem",
-        "position": index + 2,
-        "name": routeNameMap[name] || name,
-        "item": `https://portaldobolso.com.br/#/${name}`
-      }))
+      ...pathnames.map((name, index) => {
+        const path = `/${pathnames.slice(0, index + 1).join('/')}`;
+        return {
+          "@type": "ListItem",
+          "position": index + 2,
+          "name": routeNameMap[name] || name,
+          "item": `${baseUrl}${path}`
+        };
+      })
     ]
   };
 

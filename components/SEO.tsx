@@ -19,13 +19,12 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, imag
   const baseUrl = 'https://contatrabalhista.com.br';
   const defaultImage = 'https://cdn-icons-png.flaticon.com/512/2534/2534204.png'; 
 
-  // HashRouter Handling for Canonical
-  // Google recommends clean URLs, but if using Hash, we point to the main app URL + Hash path
+  // Generate clean URLs without hash for better SEO
   let generatedUrl = '';
   if (location.pathname === '/') {
       generatedUrl = baseUrl + '/';
   } else {
-      generatedUrl = `${baseUrl}/#${location.pathname}`;
+      generatedUrl = `${baseUrl}${location.pathname}`;
   }
 
   const fullUrl = canonical ? canonical : generatedUrl;
@@ -121,7 +120,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, imag
       "url": baseUrl,
       "potentialAction": {
         "@type": "SearchAction",
-        "target": `${baseUrl}/#/?q={search_term_string}`,
+        "target": `${baseUrl}/?q={search_term_string}`,
         "query-input": "required name=search_term_string"
       }
     });

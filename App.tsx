@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense } from 'react';
-import { HashRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import HourlyWidget from './components/HourlyWidget';
 import Breadcrumbs from './components/Breadcrumbs';
 import SocialShare from './components/SocialShare';
@@ -414,9 +414,9 @@ const Layout: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Layout />
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
