@@ -6,7 +6,7 @@ const SocialShare: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   // In a real deployment, replace with your actual domain
-  const baseUrl = 'https://portaldobolso.com.br/#' + location.pathname;
+  const baseUrl = 'https://contatrabalhista.com.br/#' + location.pathname;
   const text = encodeURIComponent("Acabei de usar essa calculadora trabalhista gratuita. Muito útil! Confira:");
   const url = encodeURIComponent(baseUrl);
 

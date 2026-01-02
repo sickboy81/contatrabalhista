@@ -206,9 +206,14 @@ const IncomeProofGenerator: React.FC = () => {
             <span>★★★★★</span>
             <span className="text-slate-400 text-xs ml-1">(4.7/5)</span>
         </div>
-        <p className="text-xs text-red-500 mt-4 font-medium bg-red-50 inline-block px-3 py-1 rounded border border-red-100">
-          Atenção: Este documento serve para organização pessoal (Auto-Declaração) e não substitui o DECORE contábil.
-        </p>
+        <div className="mt-4 space-y-2">
+          <p className="text-xs text-red-600 font-bold bg-red-50 inline-block px-4 py-2 rounded-lg border-2 border-red-200">
+            ⚠️ AVISO LEGAL IMPORTANTE: Este gerador cria apenas uma auto-declaração pessoal para organização de rendimentos informais. Este documento NÃO tem valor contábil oficial e NÃO substitui documentos emitidos por contador (DECORE) ou declaração de imposto de renda.
+          </p>
+          <p className="text-xs text-orange-600 font-medium bg-orange-50 inline-block px-4 py-2 rounded-lg border border-orange-200">
+            📋 Uso adequado: Organização pessoal de ganhos, apresentação em aluguéis (quando aceito pela imobiliária) ou cadastros informais. Sempre acompanhe com extratos bancários para comprovação.
+          </p>
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-12 gap-8 items-start">
@@ -442,8 +447,11 @@ const IncomeProofGenerator: React.FC = () => {
 
               {/* Legal Statement */}
               <div className="relative z-10 mt-8 mb-12 text-justify">
-                  <p className="text-sm leading-relaxed text-slate-700">
+                  <p className="text-sm leading-relaxed text-slate-700 mb-3">
                       Declaro, sob as penas da Lei (Art. 299 do Código Penal), que as informações acima prestadas são verdadeiras e referem-se aos rendimentos por mim auferidos provenientes de meu trabalho como autônomo/profissional liberal durante o período supracitado. Assumo inteira responsabilidade pela veracidade destas informações.
+                  </p>
+                  <p className="text-xs text-slate-500 italic border-t border-slate-200 pt-3">
+                      <strong>Nota:</strong> Esta é uma auto-declaração pessoal. Para documentos oficiais (financiamentos bancários, processos judiciais), consulte um contador para emissão do DECORE ou utilize sua Declaração de Imposto de Renda.
                   </p>
               </div>
 

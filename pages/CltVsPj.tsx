@@ -373,9 +373,15 @@ const CltVsPj: React.FC = () => {
                    <h2 className="text-2xl font-bold text-slate-900">O Risco da "Pejotização" (Fraude Trabalhista)</h2>
                </div>
                
+               <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4 rounded">
+                   <p className="text-sm text-yellow-800 font-medium">
+                       <strong>⚠️ Aviso Legal:</strong> Este conteúdo é informativo e educacional. Não incentivamos práticas ilegais. O objetivo é proteger trabalhadores de relações de trabalho fraudulentas e orientar sobre os requisitos legais para contratação como PJ.
+                   </p>
+               </div>
+               
                <div className="space-y-4">
                    <p>
-                       Muitas empresas contratam como PJ apenas para reduzir custos fiscais, mas tratam o profissional como empregado. Isso é ilegal. Para ser um PJ verdadeiro (B2B), você deve ter:
+                       A "pejotização" ocorre quando empresas contratam profissionais como Pessoa Jurídica (PJ) apenas para reduzir custos fiscais, mas mantêm uma relação de trabalho típica de vínculo empregatício CLT. Esta prática é <strong>ilegal e pode resultar em multas e processos trabalhistas</strong>. Para ser um PJ verdadeiro (B2B), você deve ter:
                    </p>
                    
                    <div className="grid md:grid-cols-2 gap-6 mt-4">
