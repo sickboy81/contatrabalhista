@@ -17,15 +17,10 @@ interface SEOProps {
 const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, image, schemas, ratingValue, reviewCount, noIndex, isSoftware = true }) => {
   const location = useLocation();
   const baseUrl = 'https://contatrabalhista.com.br';
-  const defaultImage = 'https://cdn-icons-png.flaticon.com/512/2534/2534204.png'; 
+  const defaultImage = 'https://cdn-icons-png.flaticon.com/512/2534/2534204.png';
 
-  // Generate clean URLs without hash for better SEO
-  let generatedUrl = '';
-  if (location.pathname === '/') {
-      generatedUrl = baseUrl + '/';
-  } else {
-      generatedUrl = `${baseUrl}${location.pathname}`;
-  }
+  // BrowserRouter Handling
+  const generatedUrl = `${baseUrl}${location.pathname}`;
 
   const fullUrl = canonical ? canonical : generatedUrl;
 
@@ -50,19 +45,19 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, imag
 
     // Handle Robots (Index/NoIndex)
     const setRobots = (content: string) => {
-        let element = document.querySelector(`meta[name="robots"]`);
-        if (!element) {
-            element = document.createElement('meta');
-            element.setAttribute('name', 'robots');
-            document.head.appendChild(element);
-        }
-        element.setAttribute('content', content);
+      let element = document.querySelector(`meta[name="robots"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute('name', 'robots');
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
     };
 
     if (noIndex) {
-        setRobots('noindex, nofollow');
+      setRobots('noindex, nofollow');
     } else {
-        setRobots('index, follow');
+      setRobots('index, follow');
     }
 
     // 3. Open Graph (Social Media)
@@ -83,16 +78,16 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, imag
     setOg('og:image', image || defaultImage);
     setOg('og:locale', 'pt_BR');
     setOg('og:site_name', 'Conta Trabalhista');
-    
+
     // Twitter Card
     const setTwitter = (name: string, content: string) => {
-        let element = document.querySelector(`meta[name="${name}"]`);
-        if (!element) {
-          element = document.createElement('meta');
-          element.setAttribute('name', name);
-          document.head.appendChild(element);
-        }
-        element.setAttribute('content', content);
+      let element = document.querySelector(`meta[name="${name}"]`);
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute('name', name);
+        document.head.appendChild(element);
+      }
+      element.setAttribute('content', content);
     };
     setTwitter('twitter:card', 'summary_large_image');
     setTwitter('twitter:title', title);
@@ -145,42 +140,42 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, imag
 
     // SoftwareApplication Schema (Excellent for Calculators)
     if (isSoftware) {
-        allSchemas.push({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": title,
-            "description": description,
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "browserRequirements": "Requires JavaScript",
-            "url": fullUrl,
-            "image": image || defaultImage,
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "BRL"
-            },
-            "aggregateRating": ratingValue ? {
-                "@type": "AggregateRating",
-                "ratingValue": ratingValue.toString(),
-                "ratingCount": reviewCount?.toString() || "100",
-                "bestRating": "5",
-                "worstRating": "1"
-            } : undefined
-        });
+      allSchemas.push({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": title,
+        "description": description,
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "url": fullUrl,
+        "image": image || defaultImage,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        },
+        "aggregateRating": ratingValue ? {
+          "@type": "AggregateRating",
+          "ratingValue": ratingValue.toString(),
+          "ratingCount": reviewCount?.toString() || "100",
+          "bestRating": "5",
+          "worstRating": "1"
+        } : undefined
+      });
     }
 
     // Merge with page specific schemas
     if (schemas) {
-        allSchemas.push(...schemas);
+      allSchemas.push(...schemas);
     }
 
     let script = document.querySelector('#seo-schema');
     if (!script) {
-        script = document.createElement('script');
-        script.id = 'seo-schema';
-        script.setAttribute('type', 'application/ld+json');
-        document.head.appendChild(script);
+      script = document.createElement('script');
+      script.id = 'seo-schema';
+      script.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(script);
     }
     script.textContent = JSON.stringify(allSchemas);
 
