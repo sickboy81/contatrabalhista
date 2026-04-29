@@ -1,14 +1,20 @@
 {
   "redirects": [
     {
-      "source": "https://www.contatrabalhista.com.br/:path*",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.contatrabalhista.com.br"
+        }
+      ],
       "destination": "https://contatrabalhista.com.br/:path*",
       "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/((?!.*\\.).*)",
       "destination": "/index.html"
     }
   ]
