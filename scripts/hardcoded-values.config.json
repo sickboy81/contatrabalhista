@@ -1,0 +1,50 @@
+{
+  "targetDir": "pages",
+  "includeExtensions": [".tsx"],
+  "ignoreFiles": [
+    "pages/OfficialTables.tsx"
+  ],
+  "globalPatterns": [
+    {
+      "id": "legacy-unemployment-values",
+      "pattern": "\\bR\\$\\s?(?:2\\.313,78|2\\.041,53|3\\.402,65)\\b"
+    },
+    {
+      "id": "legacy-mei-values",
+      "pattern": "\\bR\\$\\s?(?:97\\.200|81\\.000,00)\\b"
+    },
+    {
+      "id": "legacy-das-or-minimum",
+      "pattern": "\\b(?:70,60|1\\.412,00)\\b"
+    },
+    {
+      "id": "stale-year-labels",
+      "pattern": "\\b(?:Novidade 2026|DAS Values 2024|MEI Constants 2024)\\b"
+    }
+  ],
+  "fileRules": {
+    "pages/UnemploymentCalculator.tsx": [
+      {
+        "id": "hardcoded-unemployment-ceiling",
+        "pattern": "2\\.518,65"
+      }
+    ],
+    "pages/LegalAssistant.tsx": [
+      {
+        "id": "hardcoded-family-salary-threshold",
+        "pattern": "2\\.088,14"
+      },
+      {
+        "id": "hardcoded-family-salary-value",
+        "pattern": "71,18"
+      }
+    ],
+    "pages/NetSalaryCalculator.tsx": [
+      {
+        "id": "hardcoded-dependent-deduction",
+        "pattern": "189,59"
+      }
+    ]
+  }
+}
+

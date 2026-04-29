@@ -1,6 +1,7 @@
 import React from 'react';
 import SEO from '../components/SEO';
 import RelatedTools from '../components/RelatedTools';
+import { SITE_URL } from '../utils/siteConfig';
 
 const About: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +13,7 @@ const About: React.FC = () => {
       "@type": "Organization",
       "name": "Conta Trabalhista",
       "description": "Ferramentas gratuitas de cálculo trabalhista para simplificar a CLT no Brasil.",
-      "url": "https://contatrabalhista.com.br",
+      "url": SITE_URL,
       "foundingDate": "2023",
       "areaServed": "BR"
     }

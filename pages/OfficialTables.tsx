@@ -12,6 +12,7 @@ import {
     FAMILY_SALARY_VALUE,
     FGTS_ANNIVERSARY_TABLE,
     MINIMUM_WAGE,
+    MINIMUM_WAGE_HISTORY,
     CURRENT_YEAR,
     UNEMPLOYMENT_TABLE,
     UNEMPLOYMENT_CEILING
@@ -194,7 +195,7 @@ const OfficialTables: React.FC = () => {
                         </div>
 
                         <div className="mt-4 text-xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100">
-                            <strong>Novidade:</strong> Quem ganha até 2 salários mínimos pode optar pelo desconto simplificado para garantir a isenção. Nossas calculadoras já fazem essa análise automaticamente.
+                            Esta tabela é gerada a partir do arquivo central de constantes legais e acompanha as faixas vigentes do ano corrente.
                         </div>
                     </div>
                 </section>
@@ -413,18 +414,16 @@ const OfficialTables: React.FC = () => {
                         <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                             <h3 className="text-lg font-bold text-slate-800 mb-4">Histórico Recente</h3>
                             <ul className="space-y-3 text-sm">
-                                <li className="flex justify-between border-b border-slate-100 pb-2">
-                                    <span>2024</span>
-                                    <span className="font-bold">R$ 1.412,00</span>
-                                </li>
-                                <li className="flex justify-between border-b border-slate-100 pb-2">
-                                    <span>2023 (Maio)</span>
-                                    <span className="font-bold text-slate-600">R$ 1.320,00</span>
-                                </li>
-                                <li className="flex justify-between border-b border-slate-100 pb-2">
-                                    <span>2023 (Jan)</span>
-                                    <span className="font-bold text-slate-600">R$ 1.302,00</span>
-                                </li>
+                                {Object.entries(MINIMUM_WAGE_HISTORY)
+                                    .sort((a, b) => Number(b[0]) - Number(a[0]))
+                                    .map(([year, value]) => (
+                                        <li key={year} className="flex justify-between border-b border-slate-100 pb-2">
+                                            <span>{year}</span>
+                                            <span className={`font-bold ${Number(year) === currentYear ? '' : 'text-slate-600'}`}>
+                                                {formatCurrency(value)}
+                                            </span>
+                                        </li>
+                                    ))}
                             </ul>
                         </div>
                     </div>

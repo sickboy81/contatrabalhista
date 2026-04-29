@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SITE_URL } from '../utils/siteConfig';
 
 const SocialShare: React.FC = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(true);
 
-  // In a real deployment, replace with your actual domain
-  const baseUrl = 'https://contatrabalhista.com.br/#' + location.pathname;
+  const baseUrl = `${SITE_URL}${location.pathname}`;
   const text = encodeURIComponent("Acabei de usar essa calculadora trabalhista gratuita. Muito útil! Confira:");
   const url = encodeURIComponent(baseUrl);
 

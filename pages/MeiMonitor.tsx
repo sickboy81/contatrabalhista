@@ -4,6 +4,12 @@ import SEO from '../components/SEO';
 import FAQ from '../components/FAQ';
 import RelatedTools from '../components/RelatedTools';
 import { Link } from 'react-router-dom';
+import {
+  MEI_ANNUAL_LIMIT,
+  MEI_MONTHLY_LIMIT,
+  MEI_TOLERANCE_MULTIPLIER,
+  MEI_DAS_VALUES
+} from '../utils/taxConstants';
 
 const MeiMonitor: React.FC = () => {
   const [revenue, setRevenue] = useState<number[]>(Array(12).fill(0));
@@ -13,20 +19,9 @@ const MeiMonitor: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const currentMonthName = new Date().toLocaleDateString('pt-BR', { month: 'long' });
 
-  // MEI Constants 2024
-  const ANNUAL_LIMIT = 81000;
-  const MONTHLY_LIMIT = 6750; // Proportional base
-  
-  // DAS Values 2024 (Approx)
-  // INSS (5% min wage 1412 = 70.60) + ICMS (1.00) or ISS (5.00)
-  const DAS_VALUES = {
-      comercio: 70.60 + 1.00,
-      industria: 70.60 + 1.00,
-      servicos: 70.60 + 5.00,
-      misto: 70.60 + 6.00 // Not implementing mix to keep simple
-  };
-
-  const currentDas = DAS_VALUES[category];
+  const ANNUAL_LIMIT = MEI_ANNUAL_LIMIT;
+  const MONTHLY_LIMIT = MEI_MONTHLY_LIMIT;
+  const currentDas = MEI_DAS_VALUES[category];
 
   const updateRevenue = (monthIndex: number, value: number) => {
       const newRevenue = [...revenue];
@@ -43,20 +38,20 @@ const MeiMonitor: React.FC = () => {
   
   const percentageUsed = (totalRevenue / proportionalLimit) * 100;
   
-  const toleranceLimit = proportionalLimit * 1.20; // 20% tolerance allows staying in MEI but paying extra DAS on excess
+  const toleranceLimit = proportionalLimit * MEI_TOLERANCE_MULTIPLIER; // 20% tolerance allows staying in MEI but paying extra DAS on excess
 
   const faqItems = [
     {
         question: "O que acontece se eu estourar os R$ 81 mil?",
-        answer: "Se você ultrapassar o limite em até 20% (até R$ 97.200), você continuará como MEI até o final do ano, mas pagará um imposto extra sobre o excedente. Em janeiro do ano seguinte, você será desenquadrado e virará ME."
+        answer: `Se você ultrapassar o limite em até 20% (até ${formatCurrency(ANNUAL_LIMIT * MEI_TOLERANCE_MULTIPLIER)}), você continuará como MEI até o final do ano, mas pagará um imposto extra sobre o excedente. Em janeiro do ano seguinte, você será desenquadrado e virará ME.`
     },
     {
         question: "E se eu estourar mais de 20%?",
-        answer: "Se passar de R$ 97.200, a situação é grave. O desenquadramento é retroativo a janeiro do ano corrente (ou data de abertura). Você terá que pagar impostos como Microempresa (ME) sobre TODO o faturamento do ano, com juros e multas."
+        answer: `Se passar de ${formatCurrency(ANNUAL_LIMIT * MEI_TOLERANCE_MULTIPLIER)}, a situação é grave. O desenquadramento é retroativo a janeiro do ano corrente (ou data de abertura). Você terá que pagar impostos como Microempresa (ME) sobre TODO o faturamento do ano, com juros e multas.`
     },
     {
         question: "Posso emitir nota fiscal acima de R$ 6.750 no mês?",
-        answer: "Sim! O limite de R$ 6.750 é apenas uma média mensal de referência. Você pode faturar R$ 15 mil num mês e R$ 0 no outro, desde que a soma anual não ultrapasse o teto."
+        answer: `Sim! O limite de ${formatCurrency(MONTHLY_LIMIT)} é apenas uma média mensal de referência. Você pode faturar mais em um mês e menos em outro, desde que a soma anual não ultrapasse o teto.`
     },
     {
         question: "MEI tem direito a aposentadoria?",
@@ -75,8 +70,8 @@ const MeiMonitor: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto">
        <SEO 
-         title={`Monitor de Faturamento MEI ${currentYear} - Limite de 81 Mil`}
-         description={`Controle o limite anual do MEI em ${currentYear}. Evite o desenquadramento e calcule se você estourou os R$ 81.000,00 permitidos. Calculadora gratuita.`}
+         title={`Monitor de Faturamento MEI ${currentYear} - Limite de ${formatCurrency(ANNUAL_LIMIT)}`}
+         description={`Controle o limite anual do MEI em ${currentYear}. Evite o desenquadramento e calcule se você estourou os ${formatCurrency(ANNUAL_LIMIT)} permitidos. Calculadora gratuita.`}
          keywords={`limite mei ${currentYear}, monitor faturamento mei, estourei o mei o que fazer, desenquadramento mei, calculadora imposto mei`}
          ratingValue={4.9}
          reviewCount={780}
@@ -84,7 +79,7 @@ const MeiMonitor: React.FC = () => {
 
        <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-brand-900">Monitor MEI {currentYear}</h1>
-        <p className="text-gray-600">Controle seu faturamento para não estourar o limite de R$ 81 mil e ser desenquadrado.</p>
+        <p className="text-gray-600">Controle seu faturamento para não estourar o limite de {formatCurrency(ANNUAL_LIMIT)} e ser desenquadrado.</p>
         <div className="flex justify-center items-center gap-1 mt-2 text-yellow-500 text-sm font-medium">
             <span>★★★★★</span>
             <span className="text-slate-400 text-xs ml-1">(4.9/5)</span>
@@ -194,7 +189,7 @@ const MeiMonitor: React.FC = () => {
                       <p className="text-2xl font-bold text-blue-600">
                           {formatCurrency(MONTHLY_LIMIT)}
                       </p>
-                      <p className="text-xs text-gray-500 mt-1">Para se manter dentro dos 81k anuais.</p>
+                      <p className="text-xs text-gray-500 mt-1">Para se manter dentro do limite anual.</p>
                   </div>
               </div>
 
@@ -231,20 +226,20 @@ const MeiMonitor: React.FC = () => {
                
                <div className="space-y-4">
                    <p>
-                       O Microempreendedor Individual (MEI) tem um limite de faturamento anual de <strong>R$ 81.000,00</strong>. Esse valor não é apenas uma meta, é um teto legal que define o enquadramento tributário simplificado.
+                       O Microempreendedor Individual (MEI) tem um limite de faturamento anual de <strong>{formatCurrency(ANNUAL_LIMIT)}</strong>. Esse valor não é apenas uma meta, é um teto legal que define o enquadramento tributário simplificado.
                    </p>
                    
                    <h3 className="text-lg font-bold text-brand-700 mt-6 mb-2">A Regra da Proporcionalidade</h3>
                    <p>
-                       Se você abriu o CNPJ no meio do ano, seu limite NÃO é R$ 81 mil. O limite é proporcional aos meses de existência da empresa no ano: <strong>R$ 6.750,00 x Meses Ativos</strong>.
+                       Se você abriu o CNPJ no meio do ano, seu limite NÃO é o teto anual cheio. O limite é proporcional aos meses de existência da empresa no ano: <strong>{formatCurrency(MONTHLY_LIMIT)} x Meses Ativos</strong>.
                    </p>
                    <p className="text-sm bg-gray-50 p-2 rounded border border-gray-200">
-                       Exemplo: Abriu em Julho (6 meses ativos). Limite = 6.750 x 6 = R$ 40.500,00.
+                       Exemplo: Abriu em Julho (6 meses ativos). Limite = {formatCurrency(MONTHLY_LIMIT)} x 6 = {formatCurrency(MONTHLY_LIMIT * 6)}.
                    </p>
 
                    <h3 className="text-lg font-bold text-brand-700 mt-6 mb-2">O que é a Tolerância de 20%?</h3>
                    <p>
-                       A lei prevê uma margem de segurança. Se você ultrapassar o limite em até 20% (R$ 97.200 no ano cheio), você não é desenquadrado imediatamente. 
+                       A lei prevê uma margem de segurança. Se você ultrapassar o limite em até 20% ({formatCurrency(ANNUAL_LIMIT * MEI_TOLERANCE_MULTIPLIER)} no ano cheio), você não é desenquadrado imediatamente. 
                        Você termina o ano como MEI, paga uma guia DAS complementar sobre o excesso, e em janeiro do ano seguinte migra para Microempresa (ME). Se está em dúvida se vale a pena migrar, compare seus ganhos na nossa <Link to="/clt-pj" className="text-brand-600 hover:underline font-bold">Calculadora CLT vs PJ</Link>.
                    </p>
                    

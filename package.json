@@ -5,8 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "npm run generate:sitemap && vite build",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "check:hardcoded-values": "node scripts/check-hardcoded-values.mjs",
+    "validate:legal-freshness": "node scripts/validate-legal-freshness.mjs",
+    "validate:seo": "node scripts/validate-seo-files.mjs",
+    "prerender": "node scripts/prerender.mjs",
+    "build:seo": "npm run build && npm run prerender && npm run validate:seo",
+    "quality": "npm run lint && npm run check:hardcoded-values && npm run validate:legal-freshness && npm run build && npm run validate:seo"
   },
   "dependencies": {
     "react-dom": "^19.2.1",
@@ -19,6 +27,7 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "playwright": "^1.54.2",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

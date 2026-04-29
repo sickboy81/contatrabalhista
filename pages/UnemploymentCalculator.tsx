@@ -5,6 +5,12 @@ import SEO from '../components/SEO';
 import FAQ from '../components/FAQ';
 import RelatedTools from '../components/RelatedTools';
 import { Link } from 'react-router-dom';
+import {
+  MINIMUM_WAGE,
+  UNEMPLOYMENT_CEILING,
+  UNEMPLOYMENT_FIRST_RANGE_LIMIT,
+  UNEMPLOYMENT_SECOND_RANGE_LIMIT
+} from '../utils/taxConstants';
 
 const UnemploymentCalculator: React.FC = () => {
   const [inputs, setInputs] = useState({
@@ -69,7 +75,7 @@ const UnemploymentCalculator: React.FC = () => {
     },
     {
       question: `Qual o valor máximo do Seguro Desemprego em ${currentYear}?`,
-      answer: "O valor máximo da parcela é de <strong>R$ 2.313,78</strong>. O valor mínimo não pode ser inferior ao salário mínimo vigente."
+      answer: `O valor máximo da parcela é de <strong>${formatCurrency(UNEMPLOYMENT_CEILING)}</strong>. O valor mínimo não pode ser inferior a <strong>${formatCurrency(MINIMUM_WAGE)}</strong>.`
     },
     {
       question: "Quantas parcelas vou receber?",
@@ -237,9 +243,9 @@ const UnemploymentCalculator: React.FC = () => {
                                     <div className="text-sm text-gray-700 space-y-1">
                                         <p>1. Sua média salarial foi de <strong>{formatCurrency(result.average)}</strong>.</p>
                                         <p>2. Aplicando a regra da faixa salarial (Tabela {currentYear})...</p>
-                                        {result.average > 3402.65 ? (
-                                            <p className="text-brand-600 font-medium">3. Você atingiu o teto do benefício (R$ 2.313,78).</p>
-                                        ) : result.average <= 2041.53 ? (
+                                        {result.average > UNEMPLOYMENT_SECOND_RANGE_LIMIT ? (
+                                            <p className="text-brand-600 font-medium">3. Você atingiu o teto do benefício ({formatCurrency(UNEMPLOYMENT_CEILING)}).</p>
+                                        ) : result.average <= UNEMPLOYMENT_FIRST_RANGE_LIMIT ? (
                                             <p className="text-brand-600 font-medium">3. Calcula-se 80% da média.</p>
                                         ) : (
                                             <p className="text-brand-600 font-medium">3. Calcula-se regra mista (Faixa intermediária).</p>
@@ -328,16 +334,16 @@ const UnemploymentCalculator: React.FC = () => {
                            </thead>
                            <tbody className="divide-y divide-slate-100">
                                <tr>
-                                   <td className="p-3">Até R$ 2.041,53</td>
+                                   <td className="p-3">Até {formatCurrency(UNEMPLOYMENT_FIRST_RANGE_LIMIT)}</td>
                                    <td className="p-3">Multiplica-se a média por 0.8 (80%)</td>
                                </tr>
                                <tr>
-                                   <td className="p-3">De R$ 2.041,54 até R$ 3.402,65</td>
-                                   <td className="p-3">O que exceder a 2.041,53 multiplica por 0.5 + 1.633,22</td>
+                                   <td className="p-3">De {formatCurrency(UNEMPLOYMENT_FIRST_RANGE_LIMIT + 0.01)} até {formatCurrency(UNEMPLOYMENT_SECOND_RANGE_LIMIT)}</td>
+                                   <td className="p-3">O que exceder {formatCurrency(UNEMPLOYMENT_FIRST_RANGE_LIMIT)} multiplica por 0.5 + valor adicional da faixa vigente</td>
                                </tr>
                                <tr>
-                                   <td className="p-3">Acima de R$ 3.402,65</td>
-                                   <td className="p-3">Valor fixo de R$ 2.313,78 (Teto)</td>
+                                   <td className="p-3">Acima de {formatCurrency(UNEMPLOYMENT_SECOND_RANGE_LIMIT)}</td>
+                                   <td className="p-3">Valor fixo de {formatCurrency(UNEMPLOYMENT_CEILING)} (Teto)</td>
                                </tr>
                            </tbody>
                        </table>

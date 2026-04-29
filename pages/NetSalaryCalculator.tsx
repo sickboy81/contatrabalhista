@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import FAQ from '../components/FAQ';
 import RelatedTools from '../components/RelatedTools';
 import { Link } from 'react-router-dom';
+import { INSS_TABLE, DEDUCTION_PER_DEPENDENT } from '../utils/taxConstants';
 
 const NetSalaryCalculator: React.FC = () => {
   const [salary, setSalary] = useState(3000);
@@ -46,11 +47,11 @@ const NetSalaryCalculator: React.FC = () => {
   const faqItems = [
     {
         question: `Como é calculado o INSS em ${currentYear}?`,
-        answer: "O cálculo é progressivo. O desconto não é uma porcentagem fixa sobre o total, mas sim fatiado por faixas salariais: 7,5% (até R$ 1.412), 9%, 12% e 14% (até o teto de R$ 7.786,02)."
+        answer: `O cálculo é progressivo. O desconto não é uma porcentagem fixa sobre o total, mas sim fatiado por faixas salariais de INSS vigentes no ano, até o teto de ${formatCurrency(INSS_TABLE[INSS_TABLE.length - 1].limit)}.`
     },
     {
         question: "O que deduz do Imposto de Renda (IRRF)?",
-        answer: "Para calcular o IRRF, subtrai-se primeiro o valor do INSS. Também é deduzido R$ 189,59 por dependente e, se for o caso, pensão alimentícia. Sobre o saldo restante, aplica-se a alíquota da tabela progressiva."
+        answer: `Para calcular o IRRF, subtrai-se primeiro o valor do INSS. Também é deduzido ${formatCurrency(DEDUCTION_PER_DEPENDENT)} por dependente e, se for o caso, pensão alimentícia. Sobre o saldo restante, aplica-se a alíquota da tabela progressiva.`
     },
     {
         question: "Quem são considerados dependentes?",
@@ -133,17 +134,25 @@ const NetSalaryCalculator: React.FC = () => {
                         <Link to="/tabelas" className="text-xs text-blue-600 font-bold underline hover:text-blue-800">Ver Completa</Link>
                     </div>
                     <ul className="text-sm text-blue-700 space-y-2">
-                        <li className="flex justify-between"><span>Até R$ 1.412,00</span> <strong>7,5%</strong></li>
-                        <li className="flex justify-between"><span>R$ 1.412,01 a R$ 2.666,68</span> <strong>9%</strong></li>
-                        <li className="flex justify-between"><span>R$ 2.666,69 a R$ 4.000,03</span> <strong>12%</strong></li>
-                        <li className="flex justify-between"><span>R$ 4.000,04 a R$ 7.786,02</span> <strong>14%</strong></li>
+                        {INSS_TABLE.map((row, index) => {
+                          const prevLimit = index === 0 ? 0 : INSS_TABLE[index - 1].limit;
+                          const range = index === 0
+                            ? `Até ${formatCurrency(row.limit)}`
+                            : `De ${formatCurrency(prevLimit + 0.01)} a ${formatCurrency(row.limit)}`;
+                          return (
+                            <li key={row.limit} className="flex justify-between">
+                              <span>{range}</span>
+                              <strong>{(row.rate * 100).toFixed(1).replace('.', ',')}%</strong>
+                            </li>
+                          );
+                        })}
                     </ul>
                     <p className="text-[10px] mt-2 opacity-70">* Desconto progressivo.</p>
                 </div>
                 <div className="bg-gray-50 p-5 rounded-xl border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-3">Dedução por Dependente</h3>
                     <p className="text-sm text-gray-600">
-                        Cada dependente reduz a base de cálculo do IRRF em <strong>R$ 189,59</strong>. Isso pode fazer você cair de faixa e pagar menos imposto.
+                        Cada dependente reduz a base de cálculo do IRRF em <strong>{formatCurrency(DEDUCTION_PER_DEPENDENT)}</strong>. Isso pode fazer você cair de faixa e pagar menos imposto.
                     </p>
                 </div>
            </div>
@@ -172,7 +181,7 @@ const NetSalaryCalculator: React.FC = () => {
 
                <h3 className="text-lg font-bold text-brand-700 mt-6 mb-2">2. Desconto do IRRF (Imposto de Renda)</h3>
                <p>
-                   O Imposto de Renda Retido na Fonte é calculado <strong>após</strong> descontar o INSS. Ou seja, você não paga imposto sobre o dinheiro que foi para a previdência. Além disso, subtrai-se R$ 189,59 por dependente legal.
+                   O Imposto de Renda Retido na Fonte é calculado <strong>após</strong> descontar o INSS. Ou seja, você não paga imposto sobre o dinheiro que foi para a previdência. Além disso, subtrai-se {formatCurrency(DEDUCTION_PER_DEPENDENT)} por dependente legal.
                </p>
                <p>
                    A partir de {currentYear}, quem ganha até 2 salários mínimos pode estar isento devido ao desconto simplificado oferecido pelo governo.

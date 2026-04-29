@@ -2,19 +2,22 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# Conta Trabalhista
 
-This contains everything you need to run your app locally.
+Aplicação React + Vite com calculadoras e ferramentas trabalhistas.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1VzsluNbGu7pCRzQFmFGOGOiUMcbymPer
+## Rodar localmente
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
+1. Instale dependências:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Inicie em desenvolvimento:
    `npm run dev`
+
+## Scripts úteis
+
+- `npm run lint`: checagem TypeScript (`tsc --noEmit`)
+- `npm run generate:sitemap`: gera `public/sitemap.xml` automaticamente a partir das rotas do `App.tsx`
+- `npm run build`: gera sitemap e faz build de produção
+- `npm run prerender`: gera HTML prerenderizado das rotas em `dist/<rota>/index.html`
+- `npm run validate:seo`: valida host canônico no sitemap e referência no robots
+- `npm run build:seo`: fluxo completo de SEO técnico (build + prerender + validação)

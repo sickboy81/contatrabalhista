@@ -2,6 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import SEO from '../components/SEO';
 import FAQ from '../components/FAQ';
 import RelatedTools from '../components/RelatedTools';
+import { formatCurrency } from '../utils/calculations';
+import {
+  CURRENT_YEAR,
+  UNEMPLOYMENT_CEILING,
+  FAMILY_SALARY_LIMIT,
+  FAMILY_SALARY_VALUE
+} from '../utils/taxConstants';
 
 interface Message {
   id: string;
@@ -82,12 +89,12 @@ const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
   {
     title: "Quem tem direito ao Seguro Desemprego?",
     keywords: ['direito seguro desemprego', 'quem recebe seguro', 'regras seguro', 'pegar seguro', 'quem tem direito ao seguro desemprego'],
-    answer: "Tem direito quem foi demitido **sem justa causa** e não possui outra fonte de renda.\n\n📅 **Tempo de trabalho necessário:**\n• 1ª Solicitação: Pelo menos 12 meses trabalhados.\n• 2ª Solicitação: Pelo menos 9 meses.\n• 3ª em diante: Pelo menos 6 meses.\n\nO valor depende da média dos últimos 3 salários (teto R$ 2.313,78 em 2024)."
+    answer: `Tem direito quem foi demitido **sem justa causa** e não possui outra fonte de renda.\n\n📅 **Tempo de trabalho necessário:**\n• 1ª Solicitação: Pelo menos 12 meses trabalhados.\n• 2ª Solicitação: Pelo menos 9 meses.\n• 3ª em diante: Pelo menos 6 meses.\n\nO valor depende da média dos últimos 3 salários (teto ${formatCurrency(UNEMPLOYMENT_CEILING)} em ${CURRENT_YEAR}).`
   },
   {
     title: "Valor e Parcelas do Seguro",
     keywords: ['valor seguro', 'quantas parcelas', 'calculo seguro', 'teto seguro'],
-    answer: "O valor é a média dos últimos 3 salários multiplicada por 0.8 (ou regra da faixa). O teto Maximo é R$ 2.313,78.\n\n📦 **Parcelas:**\n• De 3 a 5 parcelas, dependendo do tempo de serviço nos últimos 36 meses."
+    answer: `O valor é a média dos últimos 3 salários multiplicada por 0.8 (ou regra da faixa). O teto máximo é ${formatCurrency(UNEMPLOYMENT_CEILING)}.\n\n📦 **Parcelas:**\n• De 3 a 5 parcelas, dependendo do tempo de serviço nos últimos 36 meses.`
   },
 
   // --- FGTS ---
@@ -153,7 +160,7 @@ const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
   {
     title: "Salário Família",
     keywords: ['salario familia', 'abono filho', 'quem recebe salario familia'],
-    answer: "É um valor pago pelo INSS (via empresa) para trabalhadores de baixa renda com filhos até 14 anos ou inválidos. O valor em 2024 é de R$ 62,04 por filho para quem ganha até R$ 1.819,26."
+    answer: `É um valor pago pelo INSS (via empresa) para trabalhadores de baixa renda com filhos até 14 anos ou inválidos. O valor em ${CURRENT_YEAR} é de ${formatCurrency(FAMILY_SALARY_VALUE)} por filho para quem ganha até ${formatCurrency(FAMILY_SALARY_LIMIT)}.`
   },
   {
     title: "Contribuição Sindical",
@@ -163,6 +170,27 @@ const KNOWLEDGE_BASE: KnowledgeBaseItem[] = [
 ];
 
 const DEFAULT_ANSWER = "Desculpe, ainda estou aprendendo e não encontrei uma resposta exata para isso no meu banco de dados da CLT. \n\nTente perguntar sobre: **Rescisão, Férias, Seguro Desemprego, Aviso Prévio ou Justa Causa**.";
+
+const renderFormattedText = (text: string) => {
+  const lines = text.split('\n');
+
+  return lines.map((line, lineIndex) => {
+    const parts = line.split(/(\*\*.*?\*\*)/g);
+
+    return (
+      <React.Fragment key={`line-${lineIndex}`}>
+        {parts.map((part, partIndex) => {
+          const isBold = part.startsWith('**') && part.endsWith('**');
+          if (isBold) {
+            return <strong key={`part-${lineIndex}-${partIndex}`}>{part.slice(2, -2)}</strong>;
+          }
+          return <React.Fragment key={`part-${lineIndex}-${partIndex}`}>{part}</React.Fragment>;
+        })}
+        {lineIndex < lines.length - 1 ? <br /> : null}
+      </React.Fragment>
+    );
+  });
+};
 
 const LegalAssistant: React.FC = () => {
   const [input, setInput] = useState('');
@@ -266,7 +294,7 @@ const LegalAssistant: React.FC = () => {
   // Convert Knowledge Base to FAQ items for display
   const knowledgeFAQ = KNOWLEDGE_BASE.map(item => ({
     question: item.title || item.keywords[0],
-    answer: item.answer.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
+    answer: item.answer
   }));
 
   return (
@@ -304,10 +332,7 @@ const LegalAssistant: React.FC = () => {
                   : 'bg-white text-slate-800 border border-gray-100 rounded-bl-none'}
                       `}>
                 {msg.role === 'model' && <div className="text-[10px] font-bold text-brand-500 mb-1 uppercase tracking-wider">Assistente Virtual</div>}
-                <div dangerouslySetInnerHTML={{
-                  // Simple markdown parser for bold
-                  __html: msg.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>')
-                }} />
+                <div>{renderFormattedText(msg.text)}</div>
               </div>
             </div>
           ))}
@@ -353,6 +378,8 @@ const LegalAssistant: React.FC = () => {
             <button
               onClick={() => handleSend()}
               disabled={!input.trim() || isTyping}
+              aria-label="Enviar mensagem"
+              title="Enviar mensagem"
               className="bg-brand-600 text-white p-3 rounded-xl hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -376,7 +403,7 @@ const LegalAssistant: React.FC = () => {
           {knowledgeFAQ.map((item, idx) => (
             <div key={idx} className="bg-white p-4 rounded-lg border border-slate-200">
               <h3 className="font-bold text-brand-700 mb-2 text-sm">{item.question}</h3>
-              <div className="text-xs text-slate-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.answer }} />
+              <div className="text-xs text-slate-600 leading-relaxed">{renderFormattedText(item.answer)}</div>
             </div>
           ))}
         </div>

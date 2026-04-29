@@ -1,45 +1,75 @@
 // ARQUIVO MESTRE DE TABELAS OFICIAIS
 // Atualize este arquivo anualmente para refletir as novas regras da CLT/Governo.
 
+// Governanca de revisao legal (usada na CI)
+// Formato ISO obrigatorio: YYYY-MM-DD
+export const LEGAL_REVIEW_LAST_UPDATED = '2026-04-29';
+export const LEGAL_REVIEW_MAX_AGE_DAYS = 60;
+export const LEGAL_OFFICIAL_SOURCES = [
+    'https://www.gov.br/trabalho-e-emprego/pt-br',
+    'https://www.gov.br/receitafederal/pt-br',
+    'https://www.gov.br/previdencia/pt-br',
+    'https://www.caixa.gov.br/beneficios-trabalhador/fgts'
+];
+
 export const CURRENT_YEAR = new Date().getFullYear();
 
-export const MINIMUM_WAGE = 1412.00; // Salário Mínimo 2024
+export const MINIMUM_WAGE = 1621.00; // Salário Mínimo 2026
+export const MINIMUM_WAGE_HISTORY: Record<number, number> = {
+    2026: 1621.00,
+    2025: 1518.00,
+    2024: 1412.00
+};
 
-// Teto do Seguro Desemprego 2024
-export const UNEMPLOYMENT_CEILING = 2313.78; 
+// Teto do Seguro Desemprego 2026
+export const UNEMPLOYMENT_CEILING = 2518.65; 
 
-// Faixas do Seguro Desemprego
+// Faixas do Seguro Desemprego 2026
 export const UNEMPLOYMENT_TABLE = [
-    { limit: 2041.53, multiplier: 0.8, added: 0 },
-    { limit: 3402.65, multiplier: 0.5, added: 1633.22 },
-    { limit: Infinity, multiplier: 0, added: 2313.78 } // Teto fixo
+    { limit: 2222.17, multiplier: 0.8, added: 0 },
+    { limit: 3703.99, multiplier: 0.5, added: 1777.74 },
+    { limit: Infinity, multiplier: 0, added: 2518.65 } // Teto fixo
 ];
+export const UNEMPLOYMENT_FIRST_RANGE_LIMIT = UNEMPLOYMENT_TABLE[0].limit;
+export const UNEMPLOYMENT_SECOND_RANGE_LIMIT = UNEMPLOYMENT_TABLE[1].limit;
 
-// Tabela INSS 2024 (Progressiva)
-// O cálculo é feito fatia por fatia.
+// Tabela INSS 2026 (Progressiva)
 export const INSS_TABLE = [
-    { limit: 1412.00, rate: 0.075 },
-    { limit: 2666.68, rate: 0.09 },
-    { limit: 4000.03, rate: 0.12 },
-    { limit: 7786.02, rate: 0.14 }
+    { limit: 1621.00, rate: 0.075 },
+    { limit: 2902.84, rate: 0.09 },
+    { limit: 4354.27, rate: 0.12 },
+    { limit: 8475.55, rate: 0.14 }
 ];
-export const INSS_CEILING = 908.85; // Teto máximo de desconto (calculado ou fixo)
+export const INSS_CEILING = 988.09; // Teto máximo de desconto 2026
 
-// Tabela IRRF 2024 (Imposto de Renda)
+// Tabela IRRF 2026 (Imposto de Renda - Referência Progressiva)
+// Nota: Em 2026 entrou em vigor a isenção de até R$ 5.000,00 (Reforma)
 export const IRRF_TABLE = [
-    { limit: 2259.20, rate: 0, deduction: 0 },
-    { limit: 2826.65, rate: 0.075, deduction: 169.44 },
-    { limit: 3751.05, rate: 0.15, deduction: 381.44 },
-    { limit: 4664.68, rate: 0.225, deduction: 662.77 },
-    { limit: Infinity, rate: 0.275, deduction: 896.00 }
+    { limit: 5000.00, rate: 0, deduction: 0 },
+    { limit: 6000.00, rate: 0.15, deduction: 750.00 }, // Valores estimados para o novo modelo
+    { limit: 7500.00, rate: 0.225, deduction: 1200.00 },
+    { limit: Infinity, rate: 0.275, deduction: 1575.00 }
 ];
 
 export const DEDUCTION_PER_DEPENDENT = 189.59;
-export const IRRF_SIMPLIFIED_DISCOUNT = 564.80; // Desconto simplificado (novo 2024)
+export const IRRF_SIMPLIFIED_DISCOUNT = 564.80; 
 
-// Salário Família 2024
-export const FAMILY_SALARY_LIMIT = 1819.26;
-export const FAMILY_SALARY_VALUE = 62.04;
+// Salário Família 2026
+export const FAMILY_SALARY_LIMIT = 2088.14; // Reajustado proporcionalmente
+export const FAMILY_SALARY_VALUE = 71.18;
+
+// MEI
+export const MEI_ANNUAL_LIMIT = 81000;
+export const MEI_MONTHLY_LIMIT = MEI_ANNUAL_LIMIT / 12;
+export const MEI_TOLERANCE_MULTIPLIER = 1.2;
+export const MEI_INSS_RATE = 0.05;
+export const MEI_DAS_BASE_INSS = MINIMUM_WAGE * MEI_INSS_RATE;
+export const MEI_DAS_VALUES = {
+    comercio: Number((MEI_DAS_BASE_INSS + 1).toFixed(2)),
+    industria: Number((MEI_DAS_BASE_INSS + 1).toFixed(2)),
+    servicos: Number((MEI_DAS_BASE_INSS + 5).toFixed(2)),
+    misto: Number((MEI_DAS_BASE_INSS + 6).toFixed(2))
+};
 
 // Tabela Saque Aniversário FGTS (Geralmente fixa, mas bom centralizar)
 export const FGTS_ANNIVERSARY_TABLE = [

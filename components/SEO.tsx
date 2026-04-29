@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SITE_URL } from '../utils/siteConfig';
 
 interface SEOProps {
   title: string;
@@ -16,7 +17,7 @@ interface SEOProps {
 
 const SEO: React.FC<SEOProps> = ({ title, description, keywords, canonical, image, schemas, ratingValue, reviewCount, noIndex, isSoftware = true }) => {
   const location = useLocation();
-  const baseUrl = 'https://contatrabalhista.com.br';
+  const baseUrl = SITE_URL;
   const defaultImage = 'https://cdn-icons-png.flaticon.com/512/2534/2534204.png';
 
   // BrowserRouter Handling

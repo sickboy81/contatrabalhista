@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { SITE_URL } from '../utils/siteConfig';
 
 const routeNameMap: Record<string, string> = {
   '': 'Início',
@@ -36,7 +37,6 @@ const Breadcrumbs: React.FC = () => {
   if (location.pathname === '/') return null;
 
   // Schema.org BreadcrumbList
-  // Important: With HashRouter, the URLs in schema must include /#/ to be valid crawl targets
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -45,13 +45,13 @@ const Breadcrumbs: React.FC = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Início",
-        "item": "https://contatrabalhista.com.br/"
+        "item": `${SITE_URL}/`
       },
       ...pathnames.map((name, index) => ({
         "@type": "ListItem",
         "position": index + 2,
         "name": routeNameMap[name] || name,
-        "item": `https://contatrabalhista.com.br/#/${name}`
+        "item": `${SITE_URL}/${name}`
       }))
     ]
   };
