@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const appPath = path.join(rootDir, 'App.tsx');
 const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml');
-const siteUrl = 'https://contatrabalhista.com.br';
+const siteUrl = 'https://www.contatrabalhista.com.br';
 
 const routePriority = new Map([
   ['/', '1.0'],

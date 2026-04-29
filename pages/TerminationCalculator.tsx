@@ -646,7 +646,7 @@ const TerminationCalculator: React.FC = () => {
           
           <div className="mt-8 pt-8 border-t border-gray-300 text-xs text-gray-500 text-center">
              <p>Este documento é uma simulação educacional.</p>
-             <p>contatrabalhista.com.br</p>
+             <p>www.contatrabalhista.com.br</p>
           </div>
         </div>
       )}

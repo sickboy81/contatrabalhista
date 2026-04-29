@@ -8,7 +8,7 @@ const rootDir = path.resolve(__dirname, '..');
 
 const sitemapPath = path.join(rootDir, 'public', 'sitemap.xml');
 const robotsPath = path.join(rootDir, 'public', 'robots.txt');
-const canonicalHost = 'https://contatrabalhista.com.br';
+const canonicalHost = 'https://www.contatrabalhista.com.br';
 
 const sitemap = await fs.readFile(sitemapPath, 'utf8');
 const robots = await fs.readFile(robotsPath, 'utf8');

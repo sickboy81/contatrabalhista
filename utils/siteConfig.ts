@@ -1,2 +1,2 @@
-export const SITE_URL = 'https://contatrabalhista.com.br';
+export const SITE_URL = 'https://www.contatrabalhista.com.br';
 

@@ -5,10 +5,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.contatrabalhista.com.br"
+          "value": "contatrabalhista.com.br"
         }
       ],
-      "destination": "https://contatrabalhista.com.br/:path*",
+      "destination": "https://www.contatrabalhista.com.br/:path*",
       "permanent": true
     }
   ],
