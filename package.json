@@ -17,12 +17,15 @@
     "quality": "npm run lint && npm run check:hardcoded-values && npm run validate:legal-freshness && npm run build && npm run validate:seo"
   },
   "dependencies": {
-    "react-dom": "^19.2.1",
-    "recharts": "^3.5.1",
-    "react-router-dom": "^7.10.1",
-    "react": "^19.2.1",
+    "@tailwindcss/postcss": "^4.2.4",
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1"
+    "jspdf": "^2.5.1",
+    "postcss": "^8.5.12",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-router-dom": "^7.10.1",
+    "recharts": "^3.5.1",
+    "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
